@@ -24,13 +24,14 @@ import static org.taymyr.lagom.javadsl.api.transport.MessageProtocols.YAML;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class PetsServiceTest {
+class PetsServiceTest {
 
     private static TestServer server;
 
     private static WSClient ws;
 
-    public static String resourceAsString(String resourceName) {
+    @SuppressWarnings({"UnstableApiUsage", "SameParameterValue"})
+    static String resourceAsString(String resourceName) {
         try {
             return Resources.toString(Resources.getResource(resourceName), Charsets.UTF_8);
         } catch (IOException e) {
@@ -38,11 +39,11 @@ public class PetsServiceTest {
         }
     }
 
-    public static <T> T eventually(CompletionStage<T> stage) throws InterruptedException, ExecutionException, TimeoutException {
+    static <T> T eventually(CompletionStage<T> stage) throws InterruptedException, ExecutionException, TimeoutException {
         return stage.toCompletableFuture().get(5, SECONDS);
     }
 
-    public static String yamlToJson(String yaml) {
+    static String yamlToJson(String yaml) {
         try {
             ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
             Object obj = yamlReader.readValue(yaml, Object.class);
@@ -55,18 +56,18 @@ public class PetsServiceTest {
     }
 
     @BeforeAll
-    public static void setUp() {
+    static void setUp() {
         server = startServer(defaultSetup().withCluster(false));
         ws = server.injector().instanceOf(WSClient.class);
     }
 
     @AfterAll
-    public static void tearDown() {
+    static void tearDown() {
         if (server != null) server.stop();
     }
 
     @Test
-    public void specShouldBeCorrect() throws InterruptedException, ExecutionException, TimeoutException {
+    void specShouldBeCorrect() throws InterruptedException, ExecutionException, TimeoutException {
         String expected = yamlToJson(resourceAsString("pets.yml"));
         WSResponse response = eventually(ws.url("http://localhost:" + server.port() + "/_pets/openapi").get());
         assertThat(response.getStatus()).isEqualTo(200);
