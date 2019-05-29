@@ -19,6 +19,7 @@ cache:
 
 script:
   - (cd openapi/java && ./mvnw clean verify)
+  - (cd openapi/scala && ./sbt clean test)
 
 notifications:
   webhooks:
