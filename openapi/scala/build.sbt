@@ -8,10 +8,9 @@ scalaVersion in ThisBuild := "2.12.8"
 lagomCassandraEnabled in ThisBuild := false
 lagomKafkaEnabled in ThisBuild := false
 
-val swaggerCore = "io.swagger.core.v3" % "swagger-core" % "2.0.7"
 val swaggerAnnotations = "io.swagger.core.v3" % "swagger-annotations" % "2.0.7"
-val lagomOpenapiImpl = "org.taymyr.lagom" %% "lagom-openapi-scala-impl" % "1.0.0"
 val lagomOpenapiApi = "org.taymyr.lagom" %% "lagom-openapi-scala-api" % "1.0.0"
+val lagomOpenapiImpl = "org.taymyr.lagom" %% "lagom-openapi-scala-impl" % "1.0.0"
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.3.0" % Provided
 val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1" % Test
 
@@ -33,7 +32,6 @@ lazy val `lagom-openapi-scala-demo-impl` = (project in file("impl"))
     libraryDependencies ++= Seq(
       macwire,
       lagomOpenapiImpl,
-      swaggerCore,
       lagomScaladslTestKit,
       scalaTest
     )
