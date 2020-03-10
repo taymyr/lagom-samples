@@ -26,7 +26,7 @@ You can also test this example manually:
 ./mvnw lagom:runAll
 ```
 
-2. Open next link in the browser to get OpenAPI Specification:
+2. Open next link in the browser to get OpenAPI Specification (JSON + YAML):
 
 ```
 http://localhost:9000/_pets/openapi
