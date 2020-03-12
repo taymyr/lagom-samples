@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.servers.Server
 import io.swagger.v3.oas.annotations.{OpenAPIDefinition, Operation, Parameter}
-import org.taymyr.lagom.scaladsl.openapi.OpenAPIService
+import org.taymyr.lagom.scaladsl.openapi.{LagomError, OpenAPIService}
 
 /**
   * Simple service with OpenAPI Specification
@@ -75,7 +75,7 @@ trait PetsService extends OpenAPIService with Service {
         content = Array(
           new Content(
             mediaType = "application/json",
-            schema = new Schema(implementation = classOf[Error])
+            schema = new Schema(implementation = classOf[LagomError])
           )
         )
       )
@@ -113,7 +113,7 @@ trait PetsService extends OpenAPIService with Service {
         content = Array(
           new Content(
             mediaType = "application/json",
-            schema = new Schema(implementation = classOf[Error])
+            schema = new Schema(implementation = classOf[LagomError])
           )
         )
       )
@@ -150,7 +150,7 @@ trait PetsService extends OpenAPIService with Service {
         content = Array(
           new Content(
             mediaType = "application/json",
-            schema = new Schema(implementation = classOf[Error])
+            schema = new Schema(implementation = classOf[LagomError])
           )
         )
       )
@@ -177,7 +177,7 @@ trait PetsService extends OpenAPIService with Service {
         content = Array(
           new Content(
             mediaType = "application/json",
-            schema = new Schema(implementation = classOf[Error])
+            schema = new Schema(implementation = classOf[LagomError])
           )
         )
       )
