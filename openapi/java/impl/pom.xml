@@ -22,6 +22,10 @@
       <artifactId>lagom-javadsl-server_${scala.binary.version}</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.typesafe.play</groupId>
+      <artifactId>play-akka-http-server_${scala.binary.version}</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.lightbend.lagom</groupId>
       <artifactId>lagom-logback_${scala.binary.version}</artifactId>
     </dependency>
