@@ -29,5 +29,5 @@ You can also test this example manually:
 2. Open next link in the browser to get OpenAPI Specification:
 
 ```
-http://localhost:9000/_pets/openapi
+http://localhost:9000/_pets/openapi[?format=json|yaml]
 ```
