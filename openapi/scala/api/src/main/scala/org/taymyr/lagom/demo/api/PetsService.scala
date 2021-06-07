@@ -36,7 +36,7 @@ import org.taymyr.lagom.scaladsl.openapi.{LagomError, OpenAPIService}
   ),
   servers = Array(new Server(url = "http://petstore.swagger.io/api"))
 )
-trait PetsService extends OpenAPIService with Service {
+trait PetsService extends Service {
 
   @Operation(
     operationId = "find",
@@ -186,7 +186,6 @@ trait PetsService extends OpenAPIService with Service {
   def delete(id: Long): ServiceCall[NotUsed, NotUsed]
 
   override def descriptor: Descriptor =
-    withOpenAPI(
       named("pets")
         .withCalls(
           pathCall("/pets?tags&limit", find _),
@@ -195,6 +194,5 @@ trait PetsService extends OpenAPIService with Service {
           restCall(Method.DELETE, "/pets/:id", delete _)
         )
         .withAutoAcl(true)
-    )
 
 }

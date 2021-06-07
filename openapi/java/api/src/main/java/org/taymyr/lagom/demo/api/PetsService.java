@@ -2,6 +2,7 @@ package org.taymyr.lagom.demo.api;
 
 import akka.NotUsed;
 import com.lightbend.lagom.javadsl.api.Descriptor;
+import com.lightbend.lagom.javadsl.api.Service;
 import com.lightbend.lagom.javadsl.api.ServiceCall;
 import com.lightbend.lagom.javadsl.api.transport.Method;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -18,8 +19,6 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.taymyr.lagom.javadsl.openapi.LagomError;
-import org.taymyr.lagom.javadsl.openapi.OpenAPIService;
-import org.taymyr.lagom.javadsl.openapi.OpenAPIUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +47,7 @@ import static io.swagger.v3.oas.annotations.enums.ParameterIn.QUERY;
     ),
     servers = @Server(url = "http://petstore.swagger.io/api")
 )
-public interface PetsService extends OpenAPIService {
+public interface PetsService extends Service {
 
     @Operation(
         operationId = "find",
@@ -181,15 +180,13 @@ public interface PetsService extends OpenAPIService {
 
     @Override
     default Descriptor descriptor() {
-        return OpenAPIUtils.withOpenAPI(
-            named("pets").withCalls(
+        return named("pets").withCalls(
                 pathCall("/pets?tags&limit", this::find),
                 restCall(Method.POST, "/pets", this::create),
                 pathCall("/pets/:id", this::findBy),
                 restCall(Method.DELETE, "/pets/:id", this::delete)
             )
-            .withAutoAcl(true)
-        );
+            .withAutoAcl(true);
     }
 
 }

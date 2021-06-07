@@ -2,11 +2,12 @@ organization in ThisBuild := "org.taymyr.lagom"
 version in ThisBuild := "1.0.0"
 
 // the Scala version that will be used for cross-compiled libraries
-scalaVersion in ThisBuild := "2.11.12"
+scalaVersion in ThisBuild := "2.13.6"
 
 // Disable Cassandra and Kafka
 lagomCassandraEnabled in ThisBuild := false
 lagomKafkaEnabled in ThisBuild := false
+lagomServiceGatewayPort in ThisBuild := 9010
 
 val swaggerAnnotations = "io.swagger.core.v3" % "swagger-annotations" % "2.0.7"
 val lagomOpenapiApi = "org.taymyr.lagom" %% "lagom-openapi-scala-api" % "1.3.0"
@@ -36,5 +37,6 @@ lazy val `lagom-openapi-scala-demo-impl` = (project in file("impl"))
       scalaTest
     )
   )
+  .settings(lagomServiceHttpPort := 9000)
   .settings(lagomForkedTestSettings: _*)
   .dependsOn(`lagom-openapi-scala-demo-api`)

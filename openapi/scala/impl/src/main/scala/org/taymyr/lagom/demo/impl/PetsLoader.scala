@@ -1,11 +1,12 @@
 package org.taymyr.lagom.demo.impl
 
-import com.lightbend.lagom.scaladsl.api.ServiceLocator
+import com.lightbend.lagom.scaladsl.api.{Service, ServiceLocator}
 import com.lightbend.lagom.scaladsl.api.ServiceLocator.NoServiceLocator
 import com.lightbend.lagom.scaladsl.devmode.LagomDevModeComponents
 import com.lightbend.lagom.scaladsl.server._
 import com.softwaremill.macwire._
 import org.taymyr.lagom.demo.api.PetsService
+import org.taymyr.lagom.scaladsl.openapi.OpenAPIRouter
 import play.api.libs.ws.ahc.AhcWSComponents
 
 class PetsLoader extends LagomApplicationLoader {
@@ -26,6 +27,10 @@ abstract class PetsApplication(context: LagomApplicationContext)
     with AhcWSComponents {
 
   // Bind the service that this server provides
-  override lazy val lagomServer = serverFor[PetsService](wire[PetsServiceImpl])
+  override lazy val lagomServer = {
+    val service = wire[PetsServiceImpl]
+    serverFor[PetsService](service)
+      .additionalRouter(wire[OpenAPIRouter].router(service))
+  }
 
 }
