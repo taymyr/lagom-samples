@@ -19,6 +19,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.taymyr.lagom.javadsl.openapi.LagomError;
 import org.taymyr.lagom.javadsl.openapi.OpenAPIService;
+import org.taymyr.lagom.javadsl.openapi.OpenAPIUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -180,7 +181,7 @@ public interface PetsService extends OpenAPIService {
 
     @Override
     default Descriptor descriptor() {
-        return withOpenAPI(
+        return OpenAPIUtils.withOpenAPI(
             named("pets").withCalls(
                 pathCall("/pets?tags&limit", this::find),
                 restCall(Method.POST, "/pets", this::create),
