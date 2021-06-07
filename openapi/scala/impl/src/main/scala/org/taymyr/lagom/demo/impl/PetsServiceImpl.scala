@@ -9,9 +9,7 @@ import org.taymyr.lagom.scaladsl.openapi.OpenAPIServiceImpl
 /**
   * Implementation of the PetsService.
   */
-class PetsServiceImpl(override val config: Config)
-    extends PetsService
-    with OpenAPIServiceImpl {
+class PetsServiceImpl extends PetsService {
   override def find(tags: List[String],
                     limit: Option[Int]): ServiceCall[NotUsed, List[Pet]] = ???
 

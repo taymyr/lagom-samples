@@ -2,6 +2,8 @@
 
 This example demonstrates, how you can generate [OpenAPI Specification](https://swagger.io/specification/) for Lagom service. It uses the [Lagom OpenAPI](https://github.com/taymyr/lagom-openapi) library.
 
+:warning: &nbsp; For see an example for Lagom 1.4.x, switch to [openapi-1.4.x](https://github.com/taymyr/lagom-samples/tree/openapi-1.4.x/openapi/java) branch.
+
 ## About service
 
 This is a simple **Petstor** service, which is often used as examples for demonstrating capabilities _OpenAPI/Swagger_ specifications.
